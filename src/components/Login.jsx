@@ -10,6 +10,8 @@ const Login = () => {
   const [password, setPassword] = useState("Rain@123");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+    const [error, setError] = useState("");
+
 
   const handleLogin = async () => {
     try {
@@ -24,7 +26,8 @@ const Login = () => {
       dispatch(addUser(res.data));
       return navigate("/");
     } catch (err) {
-      console.error(err);
+      console.log('err: ', err.response);
+      setError(err?.response?.data || "Something went wrong");
     }
   };
 

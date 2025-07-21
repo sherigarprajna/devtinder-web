@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 import { removeUser } from "../utils/userSlice";
-// import { removeFeed } from "../utils/feedSlice";
+import { removeFeed } from "../utils/feedSlice";
 
 const Navbar = () => {
   const user = useSelector((store) => store.user);
@@ -14,7 +14,7 @@ const Navbar = () => {
     try {
       await axios.post(BASE_URL + "/logout", {}, { withCredentials: true });
       dispatch(removeUser());
-      // dispatch(removeFeed());
+      dispatch(removeFeed());
       navigate("/login");
     } catch (err) {
       console.log(err);
@@ -44,7 +44,7 @@ const Navbar = () => {
                 className="btn btn-ghost btn-circle avatar hover:bg-gray-700 transition"
               >
                 <div className="w-10 rounded-full border border-gray-500">
-                  <img alt="User Photo" src={user.photoURL} />
+                  <img alt="User Photo" src={user.photoUrl} />
                 </div>
               </div>
               <ul
